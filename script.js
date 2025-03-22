@@ -15,32 +15,13 @@ const ageEl = document.querySelector("#age");
 const cityEl = document.querySelector("#city");
 const frm = document.querySelector("#frm");
 const tblBodyEl = document.querySelector("#tblBody");
-// var j = parseInt(localStorage.getItem("counter")) || 1;
 
-frm.addEventListener("submit", function (e){
+// adding values in to realtime database
+frm.addEventListener("submit", function(e){
     e.preventDefault();
-    if(!nameEl.value.trim() || !ageEl.value.trim() || !cityEl.value.trim()){
-        alert("Please fill all details");
-        return;
-    }
-    const newUser = {
-        name:nameEl.value.trim(),
-        age:ageEl.value.trim(),
-        city:cityEl.value.trim(),
-    };
-    push(userListInDB, newUser);
-});
-// // for onload funtion 
-// window.onload = displaydata();
-
-// count();
-//  // Save counter to localStorage for persistence
-// displaydata();
-
-
-
-
-function count() {
-    j++;
-    return j;
-}
+    set(userListInDB,{
+       name: nameEl.value.trim(),
+       age: ageEl.value.trim(),
+       city: cityEl.value.trim(),
+    });
+})
