@@ -1,9 +1,11 @@
 // Import Firebase modules (if using Firebase SDK 9 or above)
 import { initializeApp } from 'firebase/app';
 import { getDatabase, ref, set, get, child } from 'firebase/database';
-
+const appSettings = {
+    databaseURL: "https://form-fire-7de95-default-rtdb.firebaseio.com/",
+};
 // Initialize Firebase with your config
-const app = initializeApp(firebaseConfig);
+const app = initializeApp(appSettings);
 const database = getDatabase(app);
 const userListInDB = ref(database, "users");
 
