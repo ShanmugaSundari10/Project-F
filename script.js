@@ -42,7 +42,7 @@ function displaydata() {  // create table from submit form
         }
     }
 }
-
+// funciton for counting s.no
 function count() {
     j++;
     return j;
