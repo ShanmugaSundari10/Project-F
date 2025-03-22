@@ -25,3 +25,9 @@ frm.addEventListener("submit", function(e){
        city: cityEl.value.trim(),
     });
 })
+.then(() => {
+    console.log("Data saved successfully!");
+  })
+  .catch((error) => {
+    console.error("Error saving data: ", error);
+  });
