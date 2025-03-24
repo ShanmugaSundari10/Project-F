@@ -54,7 +54,10 @@ onValue(userListInDB, function (snapshot){
         console.log(userArray);
         for(let i=0; i<userArray.length; i++){
           let currentUser = userArray[i]
+          
           let currentUserId = currentUser[0];
+          console.log(currentUserId);
+
           let currentUserValues = currentUser[1];
           tblBodyEl.innerHTML += 
            `<tr>
@@ -62,8 +65,8 @@ onValue(userListInDB, function (snapshot){
             <td>${currentUserValues.name}</td>
             <td>${currentUserValues.age}</td>
             <td>${currentUserValues.city}</td>
-            <td><button class="btn-edit" data-id =${currentUserId}><ion-icon name="create"class="btn-edit"></ion-icon></button></td>
-            <td><button class="btn-delete" data-id =${currentUserId}><ion-icon name="trash" class="btn-delete"></ion-icon></button></td>
+            <td><button class="btn-edit" data-id =${currentUserId}><ion-icon name="create"></ion-icon></button></td>
+            <td><button class="btn-delete" data-id =${currentUserId}><ion-icon name="trash"></ion-icon></button></td>
             </tr>` ;
         }     
     } else {
@@ -75,7 +78,7 @@ document.addEventListener("click", function(e){
     if(e.target.classList.contains("btn-edit")){
         const id = e.target.dataset.id;
         console.log(e.target);
-        console.log(e.dataset);
+        console.log(e.target.dataset);
         console.log(id);
 
         const tdElement = e.target.closest("tr").children;
