@@ -83,7 +83,7 @@ document.addEventListener("click", function(e){
         } else if(e.target.classList.contains("btn-delete")){
         if(confirm("Are you sure to Delete?")){
             const id = e.target.dataset.id;
-        let data = ref(database, `user/${id}`);
+        let data = ref(database, `users/${id}`);
         remove(data);
         }
     }
