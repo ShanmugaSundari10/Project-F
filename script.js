@@ -75,14 +75,16 @@ document.addEventListener("click", function(e){
     if(e.target.classList.contains("btn-edit")){
         const id = e.target.dataset.id;
         const tdElement = e.target.closest("tr").children;
-        id.value = id;
+        idEl.value = id;
         nameEl.value = tdElement[1].textContent;
         ageEl.value = tdElement[2].textContent;
         cityEl.value = tdElement[3].textContent;
 
         } else if(e.target.classList.contains("btn-delete")){
-        const id = e.target.dataset.id;
+        if(confirm("Are you sure to Delete?")){
+            const id = e.target.dataset.id;
         let data = ref(database, `user/${id}`);
         remove(data);
+        }
     }
 })
