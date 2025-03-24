@@ -86,6 +86,7 @@ document.addEventListener("click", function(e){
             const id = e.target.dataset.id;
             console.log(id);
         let data = ref(database, `users/${id}`);
+         console.log(data);
         remove(data);
         }
     }
