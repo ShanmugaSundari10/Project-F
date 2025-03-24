@@ -44,7 +44,7 @@ function clearEl(){
 
 onValue(userListInDB, function (snapshot){
     if (snapshot.exists()){
-        let userArray = snapshot;
+        let userArray = snapshot.val();
         console.log(userArray);
     } else {
         console.log("No data Found");
