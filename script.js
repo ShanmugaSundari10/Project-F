@@ -71,25 +71,25 @@ onValue(userListInDB, function (snapshot){
     }
 });
 
-document.addEventListener("click", function(e){
-    if(e.target.classList.contains("btn-edit")){
-        const id = e.target.dataset.id;
-        console.log(id);
-        const tdElement = e.target.closest("tr").children;
-        idEl.value = id;
-        nameEl.value = tdElement[1].textContent;
-        ageEl.value = tdElement[2].textContent;
-        cityEl.value = tdElement[3].textContent;
+// document.addEventListener("click", function(e){
+//     if(e.target.classList.contains("btn-edit")){
+//         const id = e.target.dataset.id;
+//         console.log(id);
+//         const tdElement = e.target.closest("tr").children;
+//         idEl.value = id;
+//         nameEl.value = tdElement[1].textContent;
+//         ageEl.value = tdElement[2].textContent;
+//         cityEl.value = tdElement[3].textContent;
 
-        } else if(e.target.classList.contains("btn-delete")){
-        if(confirm("Are you sure to Delete?")){
-            const id = e.target.dataset.id;
-            console.log(e.target);
-            console.log(e.target.dataset);
-            console.log(id);
-        let data = ref(database, `users/${id}`);
-         console.log(data);
-        remove(data);
-        }
-    }
-})
+//         } else if(e.target.classList.contains("btn-delete")){
+//         if(confirm("Are you sure to Delete?")){
+//             const id = e.target.dataset.id;
+//             console.log(e.target);
+//             console.log(e.target.dataset);
+//             console.log(id);
+//         let data = ref(database, `users/${id}`);
+//          console.log(data);
+//         remove(data);
+//         }
+//     }
+// })
