@@ -62,8 +62,8 @@ onValue(userListInDB, function (snapshot){
             <td>${currentUserValues.name}</td>
             <td>${currentUserValues.age}</td>
             <td>${currentUserValues.city}</td>
-            <td><button class="btn-edit" data-id =${currentUserId}><ion-icon name="create"></ion-icon></button></td>
-            <td><button class="btn-delete" data-id =${currentUserId}><ion-icon name="trash"></ion-icon></button></td>
+            <td><button class="btn-edit" data-id =${currentUserId}><ion-icon name="create"class="btn-edit"></ion-icon></button></td>
+            <td><button class="btn-delete" data-id =${currentUserId}><ion-icon name="trash" class="btn-delete"></ion-icon></button></td>
             </tr>` ;
         }     
     } else {
@@ -72,18 +72,17 @@ onValue(userListInDB, function (snapshot){
 });
 
 document.addEventListener("click", function(e){
-    console.log(e.target);
-        // const id = e.target.dataset.id;
-        // const tdElement = e.target.closest("tr").children;
-        // id.value = id;
-        // nameEl.value = tdElement[1].textContent;
-        // ageEl.value = tdElement[2].textContent;
-        // cityEl.value = tdElement[3].textContent;
+    if(e.target.classlist.contains("btn-edit")){
+        const id = e.target.dataset.id;
+        const tdElement = e.target.closest("tr").children;
+        id.value = id;
+        nameEl.value = tdElement[1].textContent;
+        ageEl.value = tdElement[2].textContent;
+        cityEl.value = tdElement[3].textContent;
 
-        // } 
-    // else if(e.target.classlist.contains("btn-delete")){
-    //     const id = e.target.dataset.id;
-    //     let data = ref(database, `user/${id}`);
-    //     remove(data);
-    // }
+        } else if(e.target.classlist.contains("btn-delete")){
+        const id = e.target.dataset.id;
+        let data = ref(database, `user/${id}`);
+        remove(data);
+    }
 })
