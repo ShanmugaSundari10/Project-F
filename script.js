@@ -72,7 +72,7 @@ onValue(userListInDB, function (snapshot){
 });
 
 document.addEventListener("click", function(e){
-    console.log(e.target.classlist.contains("btn-edit"));
+    console.log(e.target);
         // const id = e.target.dataset.id;
         // const tdElement = e.target.closest("tr").children;
         // id.value = id;
