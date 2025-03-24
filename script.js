@@ -44,7 +44,9 @@ function clearEl(){
 
 onValue(userListInDB, function (snapshot){
     if (snapshot.exists()){
+        let userArray = snapshot;
+        console.log(userArray);
     } else {
-        tblBodyEl.innerHTML = "<tr><td>No Record Found</td></tr>";
+        console.log("No data Found");
     }
 });
