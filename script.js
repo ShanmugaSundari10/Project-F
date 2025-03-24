@@ -54,7 +54,7 @@ onValue(userListInDB, function (snapshot){
         console.log(userArray);
         for(let i=0; i<userArray.length; i++){
           let currentUser = userArray[i]
-          
+          console.log(currentUser);
           let currentUserId = currentUser[0];
           console.log(currentUserId);
 
