@@ -10,7 +10,7 @@ const userListInDB = ref(database, "users");
 
 const idEl = document.querySelector("#id");
 const nameEl = document.querySelector("#name");
-const ageEl = document.querySelector("#idage");
+const ageEl = document.querySelector("#age");
 const cityEl = document.querySelector("#city");
 const frm = document.querySelector("#frm")
 const btnSubmitEl = document.querySelector("#btnSubmit");
