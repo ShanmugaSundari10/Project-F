@@ -72,17 +72,18 @@ onValue(userListInDB, function (snapshot){
 });
 
 document.addEventListener("click", function(e){
-    if(e.target.classlist.contains("btn-edit")){
-        const id = e.target.dataset.id;
-        const tdElement = e.target.closest("tr").children;
-        id.value = id;
-        nameEl.value = tdElement[1].textContent;
-        ageEl.value = tdElement[2].textContent;
-        cityEl.value = tdElement[3].textContent;
+    console.log(e.target.classlist.contains("btn-edit"));
+        // const id = e.target.dataset.id;
+        // const tdElement = e.target.closest("tr").children;
+        // id.value = id;
+        // nameEl.value = tdElement[1].textContent;
+        // ageEl.value = tdElement[2].textContent;
+        // cityEl.value = tdElement[3].textContent;
 
-        } else if(e.target.classlist.contains("btn-delete")){
-        const id = e.target.dataset.id;
-        let data = ref(database, `user/${id}`);
-        remove(data);
-    }
+        // } 
+    // else if(e.target.classlist.contains("btn-delete")){
+    //     const id = e.target.dataset.id;
+    //     let data = ref(database, `user/${id}`);
+    //     remove(data);
+    // }
 })
