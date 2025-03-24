@@ -62,8 +62,8 @@ onValue(userListInDB, function (snapshot){
             <td>${currentUserValues.name}</td>
             <td>${currentUserValues.age}</td>
             <td>${currentUserValues.city}</td>
-            <td><button class="btn-edit" data-id =${currentUserId}><ion-icon name="create"class="btn-edit"></ion-icon></button></td>
-            <td><button class="btn-delete" data-id =${currentUserId}><ion-icon name="trash" class="btn-delete"></ion-icon></button></td>
+            <td><button class="btn-edit" data-id =${currentUserId}><ion-icon name="create"></ion-icon></button></td>
+            <td><button class="btn-delete" data-id =${currentUserId}><ion-icon name="trash"></ion-icon></button></td>
             </tr>` ;
         }     
     } else {
