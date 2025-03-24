@@ -1,102 +1,36 @@
-// const idEl = document.querySelector("#id");
-// const nameEl = document.querySelector("#name");
-// const ageEl = document.querySelector("#age");
-// const cityEl = document.querySelector("#city");
-// const frm = document.querySelector("#frm");
-// const tblBodyEl = document.querySelector("#tblBody");
-// var j = parseInt(localStorage.getItem("counter")) || 1;
-// // for onload funtion 
-// window.onload = displaydata();
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.5.0/firebase-app.js";
+import { getDatabase,ref,push,onValue,remove,set } from "https://www.gstatic.com/firebasejs/11.5.0/firebase-database.js";
+appSettings = {
+    databaseURL: "https://form-fire-7de95-default-rtdb.firebaseio.com/"
+}
 
-// frm.addEventListener("submit", function (e){  // submit form funciton to add table
-//     e.preventDefault();
-// count();
-// var data = `${j}#${nameEl.value}#${ageEl.value}#${cityEl.value}`;
-// localStorage.setItem("data_" + j, data);
-// localStorage.setItem("counter", j);  // Save counter to localStorage for persistence
-// displaydata();
-// });
-
-// function displaydata() {  // create table from submit form
-//     const tblBodyEl = document.querySelector("#tblBody");
-//     tblBodyEl.innerHTML = "";
-//     for (i = 0; i < localStorage.length; i++) {
-//         var key = localStorage.key(i);
-//         if (key && key.startsWith("data_")) {
-//             var value = localStorage.getItem(key);
-//             var dataparts = value.split("#");
-
-//             var row = document.createElement("tr");
-//             row.innerHTML = `
-//             <td>${dataparts[0]}</td>
-//             <td>${dataparts[1]}</td>
-//             <td>${dataparts[2]}</td>
-//             <td>${dataparts[3]}</td>
-//             <td><button class="btn-edit"><ion-icon name="create"></ion-icon></button></td>
-//             <td><button class="btn-delete"><ion-icon name="trash"></ion-icon></button></td>
-//             `;
-//             tblBodyEl.appendChild(row);
-//             nameEl.value="";
-//             ageEl.value="";
-//             cityEl.value="";
-//         }
-//     }
-// }
-// // funciton for counting s.noadd
-// function count() {
-//     j++;
-//     return j;
-// }
+const app = initializeApp(appSettings);
+const database = getDatabase(app);
+const userListInDB = ref(database, "users");
 
 const idEl = document.querySelector("#id");
 const nameEl = document.querySelector("#name");
-const ageEl = document.querySelector("#age");
+const ageEl = document.querySelector("#idage");
 const cityEl = document.querySelector("#city");
-const frm = document.querySelector("#frm");
+const frm = document.querySelector("#frm")
+const btnSubmitEl = document.querySelector("#btnSubmit");
 const tblBodyEl = document.querySelector("#tblBody");
-var j = parseInt(localStorage.getItem("counter")) || 1;
 
-// for onload function 
-window.onload = displaydata();
-
-frm.addEventListener("submit", function (e) {  // submit form function to add table
+frm.addEventListener("submit", function (e){
     e.preventDefault();
-    var currentIndex = j;  // store the current value of j
-    count();
-    var data = `${currentIndex}#${nameEl.value}#${ageEl.value}#${cityEl.value}`;
-    localStorage.setItem("data_" + currentIndex, data);
-    localStorage.setItem("counter", j);  // Save counter to localStorage for persistence
-    displaydata();
-});
 
-function displaydata() {  // create table from submit form
-    const tblBodyEl = document.querySelector("#tblBody");
-    tblBodyEl.innerHTML = "";
-    for (i = 0; i < localStorage.length; i++) {
-        var key = localStorage.key(i);
-        if (key && key.startsWith("data_")) {
-            var value = localStorage.getItem(key);
-            var dataparts = value.split("#");
-
-            var row = document.createElement("tr");
-            row.innerHTML = `
-            <td>${dataparts[0]}</td>
-            <td>${dataparts[1]}</td>
-            <td>${dataparts[2]}</td>
-            <td>${dataparts[3]}</td>
-            <td><button class="btn-edit"><ion-icon name="create"></ion-icon></button></td>
-            <td><button class="btn-delete"><ion-icon name="trash"></ion-icon></button></td>
-            `;
-            tblBodyEl.appendChild(row);
-            nameEl.value = "";
-            ageEl.value = "";
-            cityEl.value = "";
-        }
+    if (idEl.value){
+        return;
     }
-}
-
-// function for counting s.no
-function count() {
-    j++;
-    return j;
-}
+    if(!nameEl.value.trim() || !ageEl.value.trim() || !cityEl.value.trim())
+    {
+        alert("please fill all details");
+        return;
+    }
+    const newUser = {
+        name: nameEl.value.trim(),
+        age: ageEl.value.trim(),
+        city: cityEl.value.trim(),
+    };
+    push(userListInDB, newUser);
+});
