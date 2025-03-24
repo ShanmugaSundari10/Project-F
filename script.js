@@ -72,7 +72,7 @@ onValue(userListInDB, function (snapshot){
 });
 
 document.addEventListener("click", function(e){
-    if(e.target.classlist.contains("btn-edit")){
+    if(e.target.classList.contains("btn-edit")){
         const id = e.target.dataset.id;
         const tdElement = e.target.closest("tr").children;
         id.value = id;
@@ -80,7 +80,7 @@ document.addEventListener("click", function(e){
         ageEl.value = tdElement[2].textContent;
         cityEl.value = tdElement[3].textContent;
 
-        } else if(e.target.classlist.contains("btn-delete")){
+        } else if(e.target.classList.contains("btn-delete")){
         const id = e.target.dataset.id;
         let data = ref(database, `user/${id}`);
         remove(data);
