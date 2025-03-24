@@ -75,7 +75,7 @@ document.addEventListener("click", function(e){
     if(e.target.classList.contains("btn-edit")){
         const id = e.target.dataset.id;
         console.log(e.target);
-        console.log(e.dataset);
+        console.log(e.target.dataset);
         console.log(id);
 
         const tdElement = e.target.closest("tr").children;
