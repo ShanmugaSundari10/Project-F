@@ -53,8 +53,9 @@ onValue(userListInDB, function (snapshot){
         let userArray = Object.entries(snapshot.val());
         console.log(userArray);
         for(let i=0; i<userArray.length; i++){
-          let currentUserId = userArray[0];
-          let currentUserValues = userArray[1];
+          let currentUser = userArray[i]
+          let currentUserId = currentUser[0];
+          let currentUserValues = currentUser[1];
           tblBodyEl.innerHTML += 
            `<tr>
             <td>${i+1}</td>
