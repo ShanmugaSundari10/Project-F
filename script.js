@@ -1,6 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.5.0/firebase-app.js";
 import { getDatabase,ref,push,onValue,remove,set } from "https://www.gstatic.com/firebasejs/11.5.0/firebase-database.js";
-appSettings = {
+const appSettings = {
     databaseURL: "https://form-fire-7de95-default-rtdb.firebaseio.com/"
 }
 
