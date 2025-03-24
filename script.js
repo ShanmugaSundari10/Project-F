@@ -18,13 +18,18 @@ const tblBodyEl = document.querySelector("#tblBody");
 
 frm.addEventListener("submit", function (e){
     e.preventDefault();
-
-    if (idEl.value){
-        return;
-    }
     if(!nameEl.value.trim() || !ageEl.value.trim() || !cityEl.value.trim())
-    {
-        alert("please fill all details");
+        {
+            alert("please fill all details");
+            return;
+        }
+    if (idEl.value){
+        set(ref(database,"users/"+idEl.value), {
+            name: nameEl.value.trim(),
+            age: ageEl.value.trim(),
+            city: cityEl.value.trim(),
+        });
+        clearEl();
         return;
     }
     const newUser = {
@@ -40,13 +45,43 @@ function clearEl(){
     nameEl.value = "";
     ageEl.value ="";
     cityEl.value ="";
+    idEl.value ="";
 }
 
 onValue(userListInDB, function (snapshot){
     if (snapshot.exists()){
-        let userArray = snapshot.val();
+        let userArray = Object.entries(snapshot.val());
         console.log(userArray);
+        for(let i=0; i<userArray.length; i++){
+          let currentUserId = userArray[0];
+          let currentUserValues = userArray[1];
+          tblBodyEl.innerHTML += 
+           `<tr>
+            <td>${i+1}</td>
+            <td>${currentUserValues.name}</td>
+            <td>${currentUserValues.age}</td>
+            <td>${currentUserValues.city}</td>
+            <td><button class="btn-edit" data-id =${currentUserId}><ion-icon name="create"class="btn-edit"></ion-icon></button></td>
+            <td><button class="btn-delete" data-id =${currentUserId}><ion-icon name="trash" class="btn-delete"></ion-icon></button></td>
+            </tr>` ;
+        }     
     } else {
         console.log("No data Found");
     }
 });
+
+document.addEventListener("click", function(e){
+    if(e.target.classlist.contains("btn-edit")){
+        const id = e.target.dataset.id;
+        const tdElement = e.target.closest("tr").children;
+        id.value = id;
+        nameEl.value = tdElement[1].textContent;
+        ageEl.value = tdElement[2].textContent;
+        cityEl.value = tdElement[3].textContent;
+
+        } else if(e.target.classlist.contains("btn-delete")){
+        const id = e.target.dataset.id;
+        let data = ref(database, `user/${id}`);
+        remove(data);
+    }
+})
