@@ -40,5 +40,11 @@ function clearEl(){
     nameEl.value = "";
     ageEl.value ="";
     cityEl.value ="";
-
 }
+
+onValue(userListInDB, function (snapshot){
+    if (snapshot.exists()){
+    } else {
+        tblBodyEl.innerHTML = "<tr><td>No Record Found</td></tr>";
+    }
+});
