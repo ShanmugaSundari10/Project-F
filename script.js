@@ -4,7 +4,7 @@ import { getFirestore, doc, collection, addDoc, getDocs  } from "https://www.gst
 // Initialize Firebase
 // Import Firebase modules (if using Firebase SDK 9 or above)
 const appSettings = {
-    databaseURL: "https://form-fire-7de95-default-rtdb.firebaseio.com/",
+    databaseURL: "https://tint-f9a50-default-rtdb.firebaseio.com",
 };
 const firebaseConfig = {
     apiKey: "AIzaSyCZxXj6sLI_kjnwgGEnNtsRJOMBAtaZUHM",
@@ -17,7 +17,7 @@ const firebaseConfig = {
     measurementId: "G-E3HHXSLJ1L"
   };
 
-const apps = initializeApp(firebaseConfig);
+const apps = initializeApp(appSettings);
 const database = getFirestore(apps);
 // getting id reference
 const idEl = document.querySelector("#id");
