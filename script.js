@@ -1,4 +1,3 @@
-
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.5.0/firebase-app.js";
 import { getFirestore, doc, collection, addDoc, getDocs  } from "https://www.gstatic.com/firebasejs/11.5.0/firebase-firestore.js";
 
@@ -7,8 +6,18 @@ import { getFirestore, doc, collection, addDoc, getDocs  } from "https://www.gst
 const appSettings = {
     databaseURL: "https://form-fire-7de95-default-rtdb.firebaseio.com/",
 };
+const firebaseConfig = {
+    apiKey: "AIzaSyCZxXj6sLI_kjnwgGEnNtsRJOMBAtaZUHM",
+    authDomain: "tint-f9a50.firebaseapp.com",
+    databaseURL: "https://tint-f9a50-default-rtdb.firebaseio.com",
+    projectId: "tint-f9a50",
+    storageBucket: "tint-f9a50.firebasestorage.app",
+    messagingSenderId: "1054758787608",
+    appId: "1:1054758787608:web:1f6b1a18a3941d1727016d",
+    measurementId: "G-E3HHXSLJ1L"
+  };
 
-const apps = initializeApp(appSettings);
+const apps = initializeApp(firebaseConfig);
 const database = getFirestore(apps);
 // getting id reference
 const idEl = document.querySelector("#id");
@@ -37,6 +46,8 @@ async function Automatic_ID() {
 }
 //Assigning funciton to button
 frm.addEventListener("submit",Automatic_ID());
+
+
 // frm.addEventListener("submit", function(e){
 //     e.preventDefault();
 //     set(userListInDB,{
