@@ -52,7 +52,9 @@ function count() {
 function edit(key){
     edit_item = key;
     const data = localStorage.getItem(key);
+    console.log(data);
     const data_stored = JSON.parse(data);
+    console.log(data_stored);
     nameEl.value = data_stored.name;
     ageEl.value = data_stored.age;
     cityEl.value = data_stored.city;
