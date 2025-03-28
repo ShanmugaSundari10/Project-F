@@ -32,7 +32,7 @@ function displaydata() {  // create table from submit form
             <td>${dataparts[1]}</td>
             <td>${dataparts[2]}</td>
             <td>${dataparts[3]}</td>
-            <td><button class="btn-edit"><ion-icon name="create"></ion-icon></button></td>
+            <td><button class="btn-edit" onclick ="edit(${j})"><ion-icon name="create"></ion-icon></button></td>
             <td><button class="btn-delete"><ion-icon name="trash"></ion-icon></button></td>
             `;
             tblBodyEl.appendChild(row);
@@ -48,10 +48,13 @@ function count() {
     return j;
 }
 
-const btn_edit = document.querySelector("#btn-edit");
-const btn_delete = document.querySelector("#btn-delete");
 
-btn_edit.addEventListener("click", function(e){
-  e.preventDefault();
-
-})
+function edit(key){
+    edit_item = key;
+    const data = localStorage.getItem(key);
+    const data_stored = JSON.parse(data);
+    nameEl.value = data_stored.name;
+    ageEl.value = data_stored.age;
+    cityEl.value = data_stored.city;
+    
+}
