@@ -51,7 +51,7 @@ function count() {
 const btn_edit = document.querySelector("#btn-edit");
 const btn_delete = document.querySelector("#btn-delete");
 
-btn_edit.addEventListener("Click", function(e){
+btn_edit.addEventListener("click", function(e){
   e.preventDefault();
-  
+
 })
