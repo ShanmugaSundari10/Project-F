@@ -10,6 +10,18 @@ window.onload = displaydata();
 
 frm.addEventListener("submit", function (e){  // submit form funciton to add table
     e.preventDefault();
+    if (!nameEl.value.trim() || !ageEl.value.trim() || !cityEl.value.trim()){
+        alert("Please Enter a Value");
+    }
+    if(idEl.value){
+      var data = `${j}#${nameEl.value}#${ageEl.value}#${cityEl.value}`;
+      localStorage.setItem("data_" + j, data);
+      nameEl.value="";
+      ageEl.value="";
+      cityEl.value="";
+      idEl.value ="";
+      return;
+    }
 count();
 var data = `${j}#${nameEl.value}#${ageEl.value}#${cityEl.value}`;
 localStorage.setItem("data_" + j, data);
@@ -55,6 +67,7 @@ function edit(key){
     console.log(data);
     const data_stored = JSON.parse(data);
     console.log(data_stored);
+    idEl.value = key;
     nameEl.value = data_stored.name;
     ageEl.value = data_stored.age;
     cityEl.value = data_stored.city;
