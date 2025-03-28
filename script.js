@@ -47,3 +47,11 @@ function count() {
     j++;
     return j;
 }
+
+const btn_edit = document.querySelector("#btn-edit");
+const btn_delete = document.querySelector("#btn-delete");
+
+btn_edit.addEventListener("Click", function(e){
+  e.preventDefault();
+  
+})
