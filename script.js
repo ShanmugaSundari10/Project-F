@@ -1,75 +1,77 @@
-const idEl = document.querySelector("#id");
-const nameEl = document.querySelector("#name");
-const ageEl = document.querySelector("#age");
-const cityEl = document.querySelector("#city");
-const frm = document.querySelector("#frm");
-const tblBodyEl = document.querySelector("#tblBody");
-var j = parseInt(localStorage.getItem("counter")) || 1;
-// for onload funtion 
-window.onload = displaydata();
-
-frm.addEventListener("submit", function (e){  // submit form funciton to add table
-    e.preventDefault();
-    if (!nameEl.value.trim() || !ageEl.value.trim() || !cityEl.value.trim()){
-        alert("Please Enter a Value");
-    }
-    if(idEl.value){
-      var data = `${j}#${nameEl.value}#${ageEl.value}#${cityEl.value}`;
-      localStorage.setItem("data_" + j, data);
-      nameEl.value="";
-      ageEl.value="";
-      cityEl.value="";
-      idEl.value ="";
-      return;
-    }
-count();
-var data = `${j}#${nameEl.value}#${ageEl.value}#${cityEl.value}`;
-localStorage.setItem("data_" + j, data);
-localStorage.setItem("counter", j);  // Save counter to localStorage for persistence
-displaydata();
+document.addEventListener('DOMContentLoaded', () => {
+    loadData();
 });
 
-function displaydata() {  // create table from submit form
-    const tblBodyEl = document.querySelector("#tblBody");
-    tblBodyEl.innerHTML = "";
-    for (i = 0; i < localStorage.length; i++) {
-        var key = localStorage.key(i);
-        if (key && key.startsWith("data_")) {
-            var value = localStorage.getItem(key);
-            var dataparts = value.split("#");
+// Function to load data from local storage
+function loadData() {
+    let storedData = JSON.parse(localStorage.getItem('userData')) || [];
+    let tableBody = document.getElementById('data_table').getElementsByTagName('tbody')[0];
+    tableBody.innerHTML = ''; // Clear current table data
 
-            var row = document.createElement("tr");
-            row.innerHTML = `
-            <td>${dataparts[0]}</td>
-            <td>${dataparts[1]}</td>
-            <td>${dataparts[2]}</td>
-            <td>${dataparts[3]}</td>
-            <td><button class="btn-edit" onclick ="edit(${j})"><ion-icon name="create"></ion-icon></button></td>
-            <td><button class="btn-delete"><ion-icon name="trash"></ion-icon></button></td>
-            `;
-            tblBodyEl.appendChild(row);
-            nameEl.value="";
-            ageEl.value="";
-            cityEl.value="";
-        }
+    storedData.forEach((data, index) => {
+        let row = tableBody.insertRow();
+        row.innerHTML = `
+            <td>${index + 1}</td>
+            <td>${data.name}</td>
+            <td>${data.age}</td>
+            <td>${data.city}</td>
+            <td>
+                <button onclick="editData(${index})"><ion-icon name="create"></ion-icon></button></td>
+              <td><button onclick="deleteData(${index})"><ion-icon name="trash"></ion-icon></button></td>
+            
+        `;
+    });
+}
+
+// Function to save data to local storage
+function saveToLocalStorage(data) {
+    let storedData = JSON.parse(localStorage.getItem('userData')) || [];
+    storedData.push(data);
+    localStorage.setItem('userData', JSON.stringify(storedData));
+}
+
+
+// Handle form submission
+document.getElementById('frm').addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const name = document.getElementById('name').value;
+    const age = document.getElementById('age').value;
+    const city = document.getElementById('city').value;
+
+    const newData = { name, age, city };
+    saveToLocalStorage(newData);
+
+    // Clear form fields
+    document.getElementById('frm').reset();
+
+    // Reload data to update the table
+    loadData();
+});
+
+// Edit data
+function editData(index) {
+    let storedData = JSON.parse(localStorage.getItem('userData')) || [];
+    const dataToEdit = storedData[index];
+
+    document.getElementById('name').value = dataToEdit.name;
+    document.getElementById('age').value = dataToEdit.age;
+    document.getElementById('city').value = dataToEdit.city;
+
+    // Remove the data from local storage to be updated
+    storedData.splice(index, 1);
+    localStorage.setItem('userData', JSON.stringify(storedData));
+}
+
+// Delete data
+function deleteData(index) {
+    if(confirm("Are you sure to Delete?")){
+    let storedData = JSON.parse(localStorage.getItem('userData')) || [];
+    storedData.splice(index, 1);
+    localStorage.setItem('userData', JSON.stringify(storedData));
+
+    // Reload data to update the table
+    loadData();
     }
 }
 
-function count() {
-    j++;
-    return j;
-}
-
-
-function edit(key){
-    edit_item = key;
-    const data = localStorage.getItem(key);
-    console.log(data);
-    const data_stored = JSON.parse(data);
-    console.log(data_stored);
-    idEl.value = key;
-    nameEl.value = data_stored.name;
-    ageEl.value = data_stored.age;
-    cityEl.value = data_stored.city;
-    
-}
