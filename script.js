@@ -19,7 +19,7 @@ const appSettings = {
 const app = initializeApp(appSettings);
 const database = getDatabase(app);
 const analytics = getAnalytics(app);
-analytics.logEvent('page_view', { page_name: 'home' });
+analytics.logEvent('page_view', { page_name: 'main' });
 const userListInDB = ref(database, "users");
 
 const idEl = document.querySelector("#id");
@@ -53,6 +53,9 @@ frm.addEventListener("submit", function (e){
     };
     push(userListInDB, newUser);
     clearEl();
+    // Log a custom event when the user submits a form
+    analytics.logEvent('form_submission', { form_name: 'contact_form' });
+    analytics.logEvent('button_click', { button_name: 'submit_button' });
 });
 
 function clearEl(){
