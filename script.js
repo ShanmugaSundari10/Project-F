@@ -18,7 +18,8 @@ const appSettings = {
 
 const app = initializeApp(appSettings);
 const database = getDatabase(app);
-const analytics = getAnalytics(app);
+const apps = initializeApp(firebaseConfig);
+const analytics = getAnalytics(apps);
 analytics.logEvent('page_view', { page_name: 'main' });
 const userListInDB = ref(database, "users");
 
