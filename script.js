@@ -16,10 +16,11 @@ const appSettings = {
     measurementId: "G-FSD0G4Y570"
   };
 
-const app = initializeApp(appSettings);
-const database = getDatabase(app);
+// const app = initializeApp(appSettings);
+
 const apps = initializeApp(firebaseConfig);
 const analytics = getAnalytics(apps);
+const database = getDatabase(apps);
 analytics.logEvent('page_view', { page_name: 'main' });
 const userListInDB = ref(database, "users");
 
