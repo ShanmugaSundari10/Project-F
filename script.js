@@ -1,11 +1,25 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.5.0/firebase-app.js";
 import { getDatabase,ref,push,onValue,remove,set } from "https://www.gstatic.com/firebasejs/11.5.0/firebase-database.js";
+import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-analytics.js";
 const appSettings = {
     databaseURL: "https://form-fire-7de95-default-rtdb.firebaseio.com/"
 }
 
+  const firebaseConfig = {
+    apiKey: "AIzaSyCMollyFH_iyh-Tpg5ewzp6XLjJG7wirLw",
+    authDomain: "form-fire-7de95.firebaseapp.com",
+    databaseURL: "https://form-fire-7de95-default-rtdb.firebaseio.com",
+    projectId: "form-fire-7de95",
+    storageBucket: "form-fire-7de95.firebasestorage.app",
+    messagingSenderId: "521231638434",
+    appId: "1:521231638434:web:b8b8083cf45df44acfdcfb",
+    measurementId: "G-FSD0G4Y570"
+  };
+
 const app = initializeApp(appSettings);
 const database = getDatabase(app);
+const analytics = getAnalytics(app);
+analytics.logEvent('page_view', { page_name: 'home' });
 const userListInDB = ref(database, "users");
 
 const idEl = document.querySelector("#id");
