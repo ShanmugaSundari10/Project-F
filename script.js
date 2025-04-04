@@ -18,7 +18,7 @@ const appSettings = {
 
 // const app = initializeApp(appSettings);
 
-const apps = initializeApp(firebaseConfig);
+const apps = initializeApp(appSettings);
 // const analytics = getAnalytics(apps);
 const database = getDatabase(apps);
 // analytics.logEvent('page_view', { page_name: 'main' });
