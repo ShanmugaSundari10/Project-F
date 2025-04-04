@@ -1,27 +1,27 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.5.0/firebase-app.js";
 import { getDatabase,ref,push,onValue,remove,set } from "https://www.gstatic.com/firebasejs/11.5.0/firebase-database.js";
-import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-analytics.js";
+// import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-analytics.js";
 const appSettings = {
     databaseURL: "https://form-fire-7de95-default-rtdb.firebaseio.com/"
 }
 
-  const firebaseConfig = {
-    apiKey: "AIzaSyCMollyFH_iyh-Tpg5ewzp6XLjJG7wirLw",
-    authDomain: "form-fire-7de95.firebaseapp.com",
-    databaseURL: "https://form-fire-7de95-default-rtdb.firebaseio.com",
-    projectId: "form-fire-7de95",
-    storageBucket: "form-fire-7de95.firebasestorage.app",
-    messagingSenderId: "521231638434",
-    appId: "1:521231638434:web:b8b8083cf45df44acfdcfb",
-    measurementId: "G-FSD0G4Y570"
-  };
+//   const firebaseConfig = {
+//     apiKey: "AIzaSyCMollyFH_iyh-Tpg5ewzp6XLjJG7wirLw",
+//     authDomain: "form-fire-7de95.firebaseapp.com",
+//     databaseURL: "https://form-fire-7de95-default-rtdb.firebaseio.com",
+//     projectId: "form-fire-7de95",
+//     storageBucket: "form-fire-7de95.firebasestorage.app",
+//     messagingSenderId: "521231638434",
+//     appId: "1:521231638434:web:b8b8083cf45df44acfdcfb",
+//     measurementId: "G-FSD0G4Y570"
+//   };
 
 // const app = initializeApp(appSettings);
 
 const apps = initializeApp(firebaseConfig);
-const analytics = getAnalytics(apps);
+// const analytics = getAnalytics(apps);
 const database = getDatabase(apps);
-analytics.logEvent('page_view', { page_name: 'main' });
+// analytics.logEvent('page_view', { page_name: 'main' });
 const userListInDB = ref(database, "users");
 
 const idEl = document.querySelector("#id");
@@ -56,8 +56,8 @@ frm.addEventListener("submit", function (e){
     push(userListInDB, newUser);
     clearEl();
     // Log a custom event when the user submits a form
-    analytics.logEvent('form_submission', { form_name: 'contact_form' });
-    analytics.logEvent('button_click', { button_name: 'submit_button' });
+    // analytics.logEvent('form_submission', { form_name: 'contact_form' });
+    // analytics.logEvent('button_click', { button_name: 'submit_button' });
 });
 
 function clearEl(){
